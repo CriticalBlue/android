@@ -86,6 +86,10 @@ RUN mkdir $ANDROID_HOME/.android && \
 #       By Android
 #       Local Maven repository for Support Libraries
 
+
 RUN cd /opt/android-sdk-linux/tools/ && \
         echo y | ./android update sdk --no-ui --all --filter extra-android-m2repository | grep 'package installed'
 
+ADD android-sdk-license /opt/android-sdk-linux/licenses/android-sdk-license
+
+RUN /opt/android-sdk-linux/tools/bin/sdkmanager "extras;google;m2repository"
