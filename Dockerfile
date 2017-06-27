@@ -86,10 +86,10 @@ RUN mkdir $ANDROID_HOME/.android && \
 #       By Android
 #       Local Maven repository for Support Libraries
 
+RUN mkdir "$ANDROID_HOME/licenses" && \
+        echo -e "\n8933bad161af4178b1185d1a37fbf41ea5269c55" > "$ANDROID_HOME/licenses/android-sdk-license" && \
+	echo -e "\n84831b9409646a918e30573bab4c9c91346d8abd" > "$ANDROID_HOME/licenses/android-sdk-preview-license"
 
 RUN cd /opt/android-sdk-linux/tools/ && \
-        echo y | ./android update sdk --no-ui --all --filter extra-android-m2repository | grep 'package installed'
-
-ADD android-sdk-license /opt/android-sdk-linux/licenses/android-sdk-license
-
-RUN /opt/android-sdk-linux/tools/bin/sdkmanager "extras;google;m2repository"
+        echo y | ./android update sdk --no-ui --all --filter extra-android-m2repository | grep 'package installed' && \
+	echo y | ./android update sdk --no-ui --all --filter extra-google-m2repository | grep 'package installed'
