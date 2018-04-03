@@ -1,5 +1,5 @@
 
-FROM ubuntu:bionic
+FROM ubuntu:18.04
 
 # == Install required tools
 
