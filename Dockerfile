@@ -23,6 +23,7 @@ RUN apt-get update -qq && apt-get install -qq -y \
   wget \
   zip \
   libcapstone3 \
+  python-capstone \
   openjdk-8-jdk-headless
 
 # Set JAVA_HOME
