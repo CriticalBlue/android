@@ -23,18 +23,16 @@ RUN apt-get update -qq && apt-get install -qq -y \
   wget \
   zip \
   libcapstone3 \
-  python-capstone \
   openjdk-8-jdk-headless
 
 # Set JAVA_HOME
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 
 # FIXME: Python stuff should be in a venv handled by .jenkins.sh
-ENV PYTHON_REQS "requests PyJWT validators durations pyaxmlparser"
+ENV PYTHON_REQS "requests PyJWT validators durations pyaxmlparser javalang capstone"
 RUN pip install --upgrade pip && pip install -q $PYTHON_REQS
 RUN pip3 install -q $PYTHON_REQS
-# Android hardening test
-RUN pip install -q javalang
+
 
 #Android stuff
 RUN apt-get install -qq -y gradle
