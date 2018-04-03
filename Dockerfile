@@ -17,7 +17,7 @@ RUN apt-get update -qq && apt-get install -qq -y \
   python-dev \
   python-pip \
   python3-pip \
-  realpath \
+  #realpath \
   scons \
   unzip \
   wget \
