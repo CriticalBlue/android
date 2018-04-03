@@ -2,6 +2,7 @@
 FROM ubuntu:18.04
 
 # == Install required tools
+ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update -qq && apt-get install -qq -y \
   bc \
@@ -23,7 +24,10 @@ RUN apt-get update -qq && apt-get install -qq -y \
   wget \
   zip \
   libcapstone3 \
-  openjdk-8-jdk-headless
+  openjdk-8-jdk-headless \
+  tzdata
+
+RUN ln -fs /usr/share/zoneinfo/Europe/London /etc/localtime
 
 # Set JAVA_HOME
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
