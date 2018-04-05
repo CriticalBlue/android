@@ -1,6 +1,6 @@
 # Android Docker image
 
-Image suitable for android command-line development. Based on Ubuntu Yakkety includes Android SKD API 25 and JDK 1.8.
+Image suitable for android command-line development. Based on Ubuntu 18.04 includes Android SKD API 25 and JDK 1.8.
 
 ## Contents
 
