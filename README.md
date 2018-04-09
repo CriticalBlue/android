@@ -17,5 +17,7 @@ Image suitable for android command-line development. Based on Ubuntu 18.04 inclu
 ## Installation
 
 1 Install Docker
+
 2 Pull the Image: docker pull criticalblue/android
+
 3 Run the Image: docker run -it criticalblue/android /bin/bash
