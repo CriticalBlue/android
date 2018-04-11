@@ -28,7 +28,7 @@ RUN apt-get update -qq && apt-get install -qq -y \
   software-properties-common
 
 # == Add python 3.6 repository
-RUN apt-add-apt-repository -y ppa:deadsnakes/ppa 
+RUN add-apt-repository -y ppa:deadsnakes/ppa 
 RUN apt-get update -qq && apt-get install -qq -y \
   python3.6 \
   python3.6-dev
