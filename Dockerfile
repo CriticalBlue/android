@@ -24,7 +24,14 @@ RUN apt-get update -qq && apt-get install -qq -y \
   zip \
   libcapstone3 \
   openjdk-8-jdk-headless \
-  tzdata
+  tzdata \
+  software-properties-common
+
+# == Add python 3.6 repository
+RUN apt-add-apt-repository -y ppa:deadsnakes/ppa 
+RUN apt-get update -qq && apt-get install -qq -y \
+  python3.6 \
+  python3.6-dev
 
 RUN ln -fs /usr/share/zoneinfo/Europe/London /etc/localtime
 
