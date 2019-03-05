@@ -77,21 +77,78 @@ RUN cd /opt && \
 RUN mkdir $ANDROID_HOME/.android && \
 	chmod 777 $ANDROID_HOME/.android
 
-# === Install Android Support Repository
-# If missing, causes: Could not find any matches for com.android.support:support-v4:23.0.+ as no
-#   versions of com.android.support:support-v4 are available.
+# Accept licenses before installing components, no need to echo y for each component
+# License is valid for all the standard components in versions installed from this file
+# Non-standard components: MIPS system images, preview versions, GDK (Google Glass) and Android Google TV require separate licenses, not accepted there
+RUN yes | sdkmanager --licenses
 
-# extra-android-m2repository
-# Type: Extra
-# Desc: Android Support Repository, revision 41
-#       By Android
-#       Local Maven repository for Support Libraries
+# Platform tools
+RUN sdkmanager "emulator" "tools" "platform-tools"
 
-RUN mkdir "$ANDROID_HOME/licenses" && \
-        echo -e "\n8933bad161af4178b1185d1a37fbf41ea5269c55" > "$ANDROID_HOME/licenses/android-sdk-license" && \
-	echo -e "\nd56f5187479451eabf01fb78af6dfcb131a6481e" >> "$ANDROID_HOME/licenses/android-sdk-license" && \
-	echo -e "\n84831b9409646a918e30573bab4c9c91346d8abd" > "$ANDROID_HOME/licenses/android-sdk-preview-license"
+# SDKs
+# Please keep these in descending order!
+# The `yes` is for accepting all non-standard tool licenses.
 
-RUN cd /opt/android-sdk-linux/tools/ && \
-        echo y | ./android update sdk --no-ui --all --filter extra-android-m2repository | grep 'package installed' && \
-	echo y | ./android update sdk --no-ui --all --filter extra-google-m2repository | grep 'package installed'
+# Please keep all sections in descending order!
+RUN yes | sdkmanager \
+    "platforms;android-28" \
+    "platforms;android-27" \
+    "platforms;android-26" \
+    "platforms;android-25" \
+    "platforms;android-24" \
+    "platforms;android-23" \
+    "platforms;android-22" \
+    "platforms;android-21" \
+    "platforms;android-19" \
+    "platforms;android-17" \
+    "platforms;android-15" \
+    "build-tools;28.0.3" \
+    "build-tools;28.0.2" \
+    "build-tools;28.0.1" \
+    "build-tools;28.0.0" \
+    "build-tools;27.0.3" \
+    "build-tools;27.0.2" \
+    "build-tools;27.0.1" \
+    "build-tools;27.0.0" \
+    "build-tools;26.0.2" \
+    "build-tools;26.0.1" \
+    "build-tools;25.0.3" \
+    "build-tools;24.0.3" \
+    "build-tools;23.0.3" \
+    "build-tools;22.0.1" \
+    "build-tools;21.1.2" \
+    "build-tools;19.1.0" \
+    "build-tools;17.0.0" \
+    "system-images;android-28;google_apis;x86" \
+    "system-images;android-26;google_apis;x86" \
+    "system-images;android-25;google_apis;armeabi-v7a" \
+    "system-images;android-24;default;armeabi-v7a" \
+    "system-images;android-22;default;armeabi-v7a" \
+    "system-images;android-19;default;armeabi-v7a" \
+    "extras;android;m2repository" \
+    "extras;google;m2repository" \
+    "extras;google;google_play_services" \
+    "extras;m2repository;com;android;support;constraint;constraint-layout;1.0.2" \
+    "extras;m2repository;com;android;support;constraint;constraint-layout;1.0.1" \
+    "add-ons;addon-google_apis-google-23" \
+    "add-ons;addon-google_apis-google-22" \
+    "add-ons;addon-google_apis-google-21"
+
+
+# --- Install Gradle from PPA
+
+# Gradle PPA
+RUN apt-get update \
+ && apt-get -y install gradle \
+ && gradle -v
+
+# ------------------------------------------------------
+# --- Install Maven 3 from PPA
+
+RUN apt-get purge maven maven2 \
+ && apt-get update \
+ && apt-get -y install maven \
+ && mvn --version
+
+
+# ------------------------------------------------------
