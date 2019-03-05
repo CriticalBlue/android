@@ -33,7 +33,7 @@ ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 
 # FIXME: Python stuff should be in a venv handled by .jenkins.sh
 ENV PYTHON_REQS "requests PyJWT validators durations pyaxmlparser javalang capstone virtualenv"
-RUN pip install --upgrade pip && pip install -q $PYTHON_REQS
+RUN pip install  -q $PYTHON_REQS
 RUN pip3 install -q $PYTHON_REQS
 
 
