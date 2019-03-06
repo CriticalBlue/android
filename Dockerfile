@@ -106,8 +106,6 @@ RUN yes | sdkmanager \
     "build-tools;26.0.1" \
     "build-tools;25.0.3" \
     "system-images;android-28;google_apis;x86" \
-    "system-images;android-26;google_apis;x86" \
-    "system-images;android-25;google_apis;armeabi-v7a" \
     "extras;android;m2repository" \
     "extras;google;m2repository" \
     "extras;google;google_play_services" \
@@ -124,3 +122,5 @@ RUN apt-get update \
 
 # ------------------------------------------------------
 
+RUN echo -e "\n8933bad161af4178b1185d1a37fbf41ea5269c55" >> "$ANDROID_HOME/licenses/android-sdk-license" && \
+    echo -e "\n24333f8a63b6825ea9c5514f83c2829b004d1fee" >> "$ANDROID_HOME/licenses/android-sdk-license"
