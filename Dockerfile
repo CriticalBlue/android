@@ -47,7 +47,7 @@ RUN dpkg --add-architecture i386 \
  && apt-get install -qq -y libc6:i386 libncurses5:i386 libstdc++6:i386 lib32z1 libbz2-1.0:i386
 
 # == Set up Android NDK-related environment
-ENV ANDROID_NDK_HOME /opt/android-ndk-r19
+ENV ANDROID_NDK_HOME /opt/android-ndk-r19b
 ENV PATH ${PATH}:${ANDROID_NDK_HOME}
 
 # == Download Android NDK and install in /opt/android-ndk-r19
