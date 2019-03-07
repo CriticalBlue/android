@@ -47,13 +47,13 @@ RUN dpkg --add-architecture i386 \
  && apt-get install -qq -y libc6:i386 libncurses5:i386 libstdc++6:i386 lib32z1 libbz2-1.0:i386
 
 # == Set up Android NDK-related environment
-ENV ANDROID_NDK_HOME /opt/android-ndk-r12
+ENV ANDROID_NDK_HOME /opt/android-ndk-r19
 ENV PATH ${PATH}:${ANDROID_NDK_HOME}
 
-# == Download Android NDK and install in /opt/android-ndk-r12
-ENV ANDROID_NDK_PACKAGE=android-ndk-r12-linux-x86_64.zip
+# == Download Android NDK and install in /opt/android-ndk-r19
+ENV ANDROID_NDK_PACKAGE=android-ndk-r19b-linux-x86_64.zip
 RUN cd /opt \
- && wget -q http://dl.google.com/android/repository/${ANDROID_NDK_PACKAGE} \
+ && wget -q https://dl.google.com/android/repository/${ANDROID_NDK_PACKAGE} \
  && unzip -q ${ANDROID_NDK_PACKAGE} \
  && rm ${ANDROID_NDK_PACKAGE} \
  && test -d "${ANDROID_NDK_HOME}"
