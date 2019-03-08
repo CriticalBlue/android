@@ -122,5 +122,12 @@ RUN apt-get update \
 
 # ------------------------------------------------------
 
+# jd-cmd
+RUN cd /opt && \
+ git clone https://github.com/kwart/jd-cmd.git && \
+ cd jd-cmd && \
+ mvn package && \
+ unzip /opt/jd-cmd/jd-cli-*.zip -d /usr/local/bin/
+
 RUN echo -e "\n8933bad161af4178b1185d1a37fbf41ea5269c55" >> "$ANDROID_HOME/licenses/android-sdk-license" && \
     echo -e "\n24333f8a63b6825ea9c5514f83c2829b004d1fee" >> "$ANDROID_HOME/licenses/android-sdk-license"
