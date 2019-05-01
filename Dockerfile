@@ -124,12 +124,10 @@ RUN apt-get update \
 
 # jd-cmd
 RUN cd /opt && \
- git clone https://github.com/kwart/jd-cmd.git && \
- cd jd-cmd && \
- mvn package && \
- unzip /opt/jd-cmd/jd-cli-*.zip -d /usr/local/bin/ && \
- cd /opt && \
- rm -fr jd-cmd
+ curl -L https://github.com/kwart/jd-cmd/releases/download/jd-cmd-0.9.2.Final/jd-cli-0.9.2-dist.zip > jd-cmd.zip && \
+ unzip jd-cmd.zip && \
+ cp jd-cli jd-cli.jar /usr/local/bin && \
+ rm -fr jd-cmd.zip
 
 RUN echo -e "\n8933bad161af4178b1185d1a37fbf41ea5269c55" >> "$ANDROID_HOME/licenses/android-sdk-license" && \
     echo -e "\n24333f8a63b6825ea9c5514f83c2829b004d1fee" >> "$ANDROID_HOME/licenses/android-sdk-license"
