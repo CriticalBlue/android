@@ -1,4 +1,3 @@
-
 FROM ubuntu:18.04
 
 # == Install required tools
@@ -122,7 +121,7 @@ RUN apt-get update \
 
 # ------------------------------------------------------
 
-# jd-cmd
+# jd-cmd 0.9.2
 RUN cd /opt && \
  curl -L https://github.com/kwart/jd-cmd/releases/download/jd-cmd-0.9.2.Final/jd-cli-0.9.2-dist.zip > jd-cmd.zip && \
  unzip jd-cmd.zip && \
