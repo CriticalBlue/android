@@ -22,6 +22,7 @@ RUN apt-get update -qq && apt-get install -qq -y \
   unzip \
   wget \
   zip \
+  clang \
   libcapstone3 \
   openjdk-8-jdk-headless \
   tzdata
@@ -32,10 +33,12 @@ RUN ln -fs /usr/share/zoneinfo/Europe/London /etc/localtime
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 
 # FIXME: Python stuff should be in a venv handled by .jenkins.sh
-ENV PYTHON_REQS "requests PyJWT validators durations pyaxmlparser javalang capstone virtualenv PyInstaller==3.3.1 pure-python-adb boto3"
+ENV PYTHON_REQS "requests PyJWT validators durations pyaxmlparser javalang capstone virtualenv PyInstaller==3.3.1 pure-python-adb boto3 clang"
 RUN pip install  -q $PYTHON_REQS
 RUN pip3 install -q $PYTHON_REQS
 
+# Symlink python clang searches for libclang.so only
+RUN ln -s /usr/lib/llvm-6.0/lib/libclang.so.1 /usr/lib/llvm-6.0/lib/libclang.so
 
 #Android stuff
 RUN apt-get install -qq -y gradle
