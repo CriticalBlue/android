@@ -90,13 +90,23 @@ RUN sdkmanager "emulator" "tools" "platform-tools"
 # SDKs
 # Please keep these in descending order!
 # The `yes` is for accepting all non-standard tool licenses.
-
+RUN mkdir -p /root/.android/ && touch /root/.android/repositories.cfg
+RUN sdkmanager --update
 # Please keep all sections in descending order!
 RUN yes | sdkmanager \
+    "platforms;android-30" \
+    "platforms;android-29" \
     "platforms;android-28" \
     "platforms;android-27" \
     "platforms;android-26" \
     "platforms;android-25" \
+    "build-tools;30.0.2" \
+    "build-tools;30.0.1" \
+    "build-tools;30.0.0" \
+    "build-tools;29.0.3" \
+    "build-tools;29.0.2" \
+    "build-tools;29.0.1" \
+    "build-tools;29.0.0" \
     "build-tools;28.0.3" \
     "build-tools;28.0.2" \
     "build-tools;28.0.1" \
@@ -108,7 +118,7 @@ RUN yes | sdkmanager \
     "build-tools;26.0.2" \
     "build-tools;26.0.1" \
     "build-tools;25.0.3" \
-    "system-images;android-28;google_apis;x86" \
+    "system-images;android-28;google_apis_playstore;x86" \
     "extras;android;m2repository" \
     "extras;google;m2repository" \
     "extras;google;google_play_services" \
