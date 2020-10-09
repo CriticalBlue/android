@@ -33,7 +33,7 @@ RUN ln -fs /usr/share/zoneinfo/Europe/London /etc/localtime
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 
 # FIXME: Python stuff should be in a venv handled by .jenkins.sh
-ENV PYTHON_REQS "requests PyJWT validators durations pyaxmlparser javalang capstone virtualenv PyInstaller==3.3.1 pure-python-adb boto3 clang"
+ENV PYTHON_REQS "requests PyJWT validators durations pyaxmlparser javalang capstone virtualenv PyInstaller==3.3.1 pure-python-adb boto3 clang==6.0.0"
 #RUN pip install  -q $PYTHON_REQS
 RUN pip3 install -q $PYTHON_REQS
 
