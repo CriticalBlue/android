@@ -54,7 +54,7 @@ ENV ANDROID_NDK_HOME /opt/android-ndk-r21d
 ENV PATH ${PATH}:${ANDROID_NDK_HOME}
 
 # == Download Android NDK and install in /opt/android-ndk-r19
-ENV ANDROID_NDK_PACKAGE=android-ndk-r21d-linux-x86_64.zip
+ENV ANDROID_NDK_PACKAGE=android-ndk-r25c-linux.zip
 RUN cd /opt \
  && wget -q https://dl.google.com/android/repository/${ANDROID_NDK_PACKAGE} \
  && unzip -q ${ANDROID_NDK_PACKAGE} \
