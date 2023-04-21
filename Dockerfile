@@ -118,7 +118,6 @@ RUN yes | sdkmanager \
     "build-tools;26.0.2" \
     "build-tools;26.0.1" \
     "build-tools;25.0.3" \
-    "ndk;25.2.9519653" \
     "system-images;android-28;google_apis_playstore;x86" \
     "extras;android;m2repository" \
     "extras;google;m2repository" \
@@ -126,7 +125,7 @@ RUN yes | sdkmanager \
     "extras;m2repository;com;android;support;constraint;constraint-layout;1.0.2" \
     "extras;m2repository;com;android;support;constraint;constraint-layout;1.0.1" 
 
-
+RUN sdkmanager --install "ndk;25.2.9519653"
 # --- Install Gradle from PPA
 
 # Gradle PPA
