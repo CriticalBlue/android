@@ -24,13 +24,14 @@ RUN apt-get update -qq && apt-get install -qq -y \
   zip \
   clang \
   libcapstone3 \
+  openjdk-8-jdk-headless \
   openjdk-11-jdk \
   tzdata
 
 RUN ln -fs /usr/share/zoneinfo/Europe/London /etc/localtime
 
-# Set JAVA_HOME
-ENV JAVA_HOME /usr/lib/jvm/java-11-openjdk-amd64
+# Set JAVA_HOME for sdkmanager
+ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 
 # FIXME: Python stuff should be in a venv handled by .jenkins.sh
 ENV PYTHON_REQS "requests PyJWT validators durations pyaxmlparser javalang capstone virtualenv PyInstaller==3.3.1 pure-python-adb boto3 clang==6.0.0"
@@ -134,7 +135,7 @@ RUN apt-get update \
  && gradle -v
 
 # ------------------------------------------------------
-
+ENV JAVA_HOME /usr/lib/jvm/java-11-openjdk-amd64
 # jd-cmd
 RUN cd /opt && \
  curl -L https://github.com/kwart/jd-cmd/releases/download/jd-cmd-0.9.2.Final/jd-cli-0.9.2-dist.zip > jd-cmd.zip && \
