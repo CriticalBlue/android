@@ -25,7 +25,6 @@ RUN apt-get update -qq && apt-get install -qq -y \
   clang \
   libcapstone3 \
   openjdk-8-jdk-headless \
-  openjdk-11-jdk \
   tzdata
 
 RUN ln -fs /usr/share/zoneinfo/Europe/London /etc/localtime
@@ -136,6 +135,9 @@ RUN apt-get update \
 
 # ------------------------------------------------------
 ENV JAVA_HOME /usr/lib/jvm/java-11-openjdk-amd64
+RUN apt-get install -qq -y \
+  openjdk-11-jdk 
+  
 # jd-cmd
 RUN cd /opt && \
  curl -L https://github.com/kwart/jd-cmd/releases/download/jd-cmd-0.9.2.Final/jd-cli-0.9.2-dist.zip > jd-cmd.zip && \
